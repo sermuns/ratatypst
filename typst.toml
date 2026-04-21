@@ -1,0 +1,19 @@
+[package]
+name = "ratatypst"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Samuel Åkesson <https://github.com/sermuns>"]
+license = "Unlicense"
+description = "Use Ratatui in Typst"
+repository = "https://github.com/sermuns/ratatypst"
+categories = ["fun", "text"]
+exclude = [
+  ".github",
+  "docs",
+  "scripts",
+  "tests",
+  ".typstignore",
+  "Justfile",
+  "thumbnail-dark.svg",
+  "thumbnail-light.svg",
+]
