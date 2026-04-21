@@ -1,13 +1,17 @@
-#import "../lib.typ": *
+#import "../lib.typ": tui
+#set page(
+  margin: 10pt,
+  width: auto,
+  height: auto,
+)
 
-#set text(size: 18pt)
-#show raw: set text(font: "JetBrains Mono")
+#show raw: set text(
+  font: "JetBrains Mono",
+  size: 15pt,
+)
 
-#align(
-  center,
-  run(
-    40,
-    20,
-    "jlhlhjhlhlhlhjhj",
-  ),
+#tui(
+  "jkljhk",
+  width: 50,
+  height: 20,
 )
