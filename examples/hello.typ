@@ -1,3 +1,3 @@
 #import "../lib.typ": *
 
-#run
+#run(80, 30)
