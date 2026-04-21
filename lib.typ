@@ -7,11 +7,12 @@
   size: 2,
 )
 
-#let run(width, height) = raw(
+#let run(width, height, input) = raw(
   str(
     core.run(
       _to-le-bytes-u16(width),
       _to-le-bytes-u16(height),
+      bytes(input),
     ),
   ),
 )

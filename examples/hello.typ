@@ -1,3 +1,7 @@
 #import "../lib.typ": *
 
-#run(80, 30)
+#run(
+  80,
+  30,
+  "ssdddjkkkllllllll",
+)
