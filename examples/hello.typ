@@ -1,3 +1,3 @@
-#import "../lib.typ": hello
+#import "../lib.typ": *
 
-#hello
+#run
