@@ -31,9 +31,9 @@ impl App {
         };
         for c in input.chars() {
             match c {
-                'j' | 'w' => s.change_focus(Direction::Down),
+                'k' | 'w' => s.change_focus(Direction::Up),
+                'j' | 's' => s.change_focus(Direction::Down),
                 'h' | 'a' => s.change_focus(Direction::Left),
-                'k' | 's' => s.change_focus(Direction::Up),
                 'l' | 'd' => s.change_focus(Direction::Right),
                 _ => {}
             }
