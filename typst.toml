@@ -9,11 +9,6 @@ repository = "https://github.com/sermuns/ratatypst"
 categories = ["fun", "text"]
 exclude = [
   ".github",
-  "docs",
-  "scripts",
-  "tests",
   ".typstignore",
   "Justfile",
-  "thumbnail-dark.svg",
-  "thumbnail-light.svg",
 ]
