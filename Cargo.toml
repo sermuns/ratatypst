@@ -9,7 +9,7 @@ crate-type = ["cdylib"]
 [dependencies]
 ratatui = { version = "0.30", default-features = false }
 unicode-width = "0.2"
-wasm-minimal-protocol = "0.1"
+wasm-minimal-protocol = "0.2"
 
 [profile.release]
 lto = true
