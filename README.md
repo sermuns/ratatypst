@@ -27,7 +27,7 @@ just build
 Include the function `tui` from `lib.typ` into your example code and try it out!
 
 ```typ
-#import "lib.typ": tui
+#import "../lib.typ": tui
 
 #tui(
   "ljlhlkjhljh",
