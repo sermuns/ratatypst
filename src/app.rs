@@ -1,10 +1,8 @@
-use std::fmt::Alignment;
-
-use ratatui::prelude::*;
-use ratatui::symbols::border;
-use ratatui::widgets::Block;
-use ratatui::widgets::Paragraph;
-use ratatui::widgets::Widget;
+use ratatui::{
+    prelude::*,
+    symbols::border,
+    widgets::{Block, Paragraph, Widget},
+};
 
 pub struct App {
     focus: Focus,
