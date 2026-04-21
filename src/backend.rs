@@ -13,7 +13,6 @@ use unicode_width::UnicodeWidthStr;
 pub struct TypstBackend {
     buffer: Buffer,
     scrollback: Buffer,
-    cursor: bool,
     pos: Position,
 }
 
@@ -24,17 +23,16 @@ impl fmt::Display for TypstBackend {
             let mut skip: usize = 0;
             for (x, c) in cells.iter().enumerate() {
                 if skip == 0 {
-                    f.write_str(c.symbol()).unwrap();
+                    f.write_str(c.symbol())?;
                 } else {
                     overwritten.push((x, c.symbol()));
                 }
                 skip = max(skip, c.symbol().width()).saturating_sub(1);
             }
             if !overwritten.is_empty() {
-                f.write_str(" Hidden by multi-width symbols: {overwritten:?}")
-                    .unwrap();
+                f.write_str(" Hidden by multi-width symbols: {overwritten:?}")?;
             }
-            f.write_char('\n').unwrap()
+            f.write_char('\n')?;
         }
         Ok(())
     }
@@ -45,7 +43,6 @@ impl TypstBackend {
         Self {
             buffer: Buffer::empty(Rect::new(0, 0, width, height)),
             scrollback: Buffer::empty(Rect::new(0, 0, width, 0)),
-            cursor: false,
             pos: Position::new(0, 0),
         }
     }
@@ -69,12 +66,10 @@ impl ratatui::backend::Backend for TypstBackend {
     }
 
     fn hide_cursor(&mut self) -> Result<(), Self::Error> {
-        self.cursor = false;
         Ok(())
     }
 
     fn show_cursor(&mut self) -> Result<(), Self::Error> {
-        self.cursor = true;
         Ok(())
     }
 
@@ -174,15 +169,9 @@ impl ratatui::backend::Backend for TypstBackend {
     }
 
     fn window_size(&mut self) -> Result<WindowSize, Self::Error> {
-        // FIXME: this shoud be dynamic..
-        // Some arbitrary window pixel size, probably doesn't need much testing.
-        const WINDOW_PIXEL_SIZE: Size = Size {
-            width: 640,
-            height: 480,
-        };
         Ok(WindowSize {
             columns_rows: self.buffer.area.as_size(),
-            pixels: WINDOW_PIXEL_SIZE,
+            pixels: Size::ZERO, // does it even matter?
         })
     }
 
