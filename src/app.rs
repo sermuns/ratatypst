@@ -1,3 +1,5 @@
+use std::fmt::Alignment;
+
 use ratatui::prelude::*;
 use ratatui::symbols::border;
 use ratatui::widgets::Block;
@@ -6,6 +8,7 @@ use ratatui::widgets::Widget;
 
 pub struct App {
     focus: Focus,
+    num_steps: usize,
 }
 
 #[derive(PartialEq, Debug)]
@@ -26,6 +29,7 @@ impl App {
     pub fn from_input_str(input: &str) -> Self {
         let mut s = Self {
             focus: Focus::Bottom,
+            num_steps: input.chars().count(),
         };
         for c in input.chars() {
             match c {
@@ -62,7 +66,11 @@ impl App {
 
 impl Widget for &App {
     fn render(self, area: Rect, buf: &mut Buffer) {
-        let block = Block::bordered().title("ratatypst");
+        let block = Block::bordered()
+            .title(" ratatypst ")
+            .title_bottom(format!(" Steps processed: {} ", self.num_steps))
+            .title_alignment(HorizontalAlignment::Center);
+
         (&block).render(area, buf);
 
         let [top, bottom] = block
