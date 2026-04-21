@@ -1,7 +1,7 @@
 <div align="center">
 
-<a href="https://github.com/sermuns/meread">
-  <img alt="MEREAD" src="media/banner.svg">
+<a href="https://github.com/sermuns/ratatypst">
+  <img alt="ratatypst banner" src="media/banner.svg">
 </a>
 
 _finally.. `ratatui` in Typst.._
