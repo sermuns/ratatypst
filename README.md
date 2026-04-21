@@ -10,16 +10,28 @@ _finally.. `ratatui` in Typst.._
 
 </div>
 
+![demo](media/demo.avif)
+
 This is a terribly barebones and shitty proof-of-concept for writing Ratatui apps for Typst.
 
 Inspired by [`soviet-matrix`](https://typst.app/universe/package/soviet-matrix/)
+
+## Try it out!
+
+Compile the Rust code:
+
+```sh
+just build
+```
+
+Include the function `tui` from `lib.typ` into your example code and try it out!
 
 ```typ
 #import "lib.typ": tui
 
 #tui(
-  "jjkllljlhl",
-  width: 80,
-  height: 80,
+  "ljlhlkjhljh",
+  width: 50,
+  height: 20,
 )
 ```
