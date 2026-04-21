@@ -18,23 +18,24 @@ Inspired by [`soviet-matrix`](https://typst.app/universe/package/soviet-matrix/)
 
 ## Try it out!
 
-Compile the Rust code:
+1. Clone this repo.
 
-```sh
-just build
-```
+2. Compile the Rust code:
 
-Include the function `tui` from `lib.typ` into your example code and try it out!
+   ```sh
+   just build
+   ```
 
-```typ
-#import "../lib.typ": tui
+3. Try out the example, either:
+   - Edit the file with [`typst-preview.nvim`](https://github.com/chomosuke/typst-preview.nvim) which can re-render a preview on every keystroke.
 
-#tui(
-  "ljlhlkjhljh",
-  width: 50,
-  height: 20,
-)
-```
+   - Use [`typst` CLI](https://repology.org/project/typst/versions) (**not as cool**)
+
+     ```sh
+     typst watch --root . examples/hello.typ
+     ```
+
+     which automatically recompiles the PDF `examples/hello.pdf` everytime the `examples/hello.typ` is saved with modifications.
 
 ## Disclaimer
 
