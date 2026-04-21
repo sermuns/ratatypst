@@ -1,5 +1,8 @@
-use core::fmt::Write;
-use core::iter;
+use core::{
+    cmp::max,
+    fmt::{self, Write},
+    iter,
+};
 use ratatui::{
     backend::{ClearType, WindowSize},
     buffer::Cell,
@@ -14,6 +17,29 @@ pub struct TypstBackend {
     pos: Position,
 }
 
+impl fmt::Display for TypstBackend {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for cells in self.buffer.content.chunks(self.buffer.area.width as usize) {
+            let mut overwritten = vec![];
+            let mut skip: usize = 0;
+            for (x, c) in cells.iter().enumerate() {
+                if skip == 0 {
+                    f.write_str(c.symbol()).unwrap();
+                } else {
+                    overwritten.push((x, c.symbol()));
+                }
+                skip = max(skip, c.symbol().width()).saturating_sub(1);
+            }
+            if !overwritten.is_empty() {
+                f.write_str(" Hidden by multi-width symbols: {overwritten:?}")
+                    .unwrap();
+            }
+            f.write_char('\n').unwrap()
+        }
+        Ok(())
+    }
+}
+
 impl TypstBackend {
     pub fn new(width: u16, height: u16) -> Self {
         Self {
@@ -24,38 +50,8 @@ impl TypstBackend {
         }
     }
 
-    /// Returns a string representation of the given buffer for debugging purpose.
-    ///
-    /// This function is used to visualize the buffer content in a human-readable format.
-    /// It iterates through the buffer content and appends each cell's symbol to the view string.
-    /// If a cell is hidden by a multi-width symbol, it is added to the overwritten vector and
-    /// displayed at the end of the line.
-    fn buffer_view(buffer: &Buffer) -> String {
-        let mut view =
-            String::with_capacity(buffer.content.len() + buffer.area.height as usize * 3);
-        for cells in buffer.content.chunks(buffer.area.width as usize) {
-            let mut overwritten = vec![];
-            let mut skip: usize = 0;
-            for (x, c) in cells.iter().enumerate() {
-                if skip == 0 {
-                    view.push_str(c.symbol());
-                } else {
-                    overwritten.push((x, c.symbol()));
-                }
-                skip = core::cmp::max(skip, c.symbol().width()).saturating_sub(1);
-            }
-            if !overwritten.is_empty() {
-                write!(&mut view, " Hidden by multi-width symbols: {overwritten:?}").unwrap();
-            }
-            view.push('\n');
-        }
-        view
-    }
-
-    // use `buffer_view` to generate a string representation of the current buffer content, and
-    // convert it to a byte vector.
     pub fn to_vec(&self) -> Vec<u8> {
-        Self::buffer_view(&self.buffer).into_bytes()
+        self.to_string().into_bytes()
     }
 }
 
