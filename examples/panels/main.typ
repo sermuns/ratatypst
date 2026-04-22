@@ -7,15 +7,19 @@
 
 #show raw: set text(
   font: "JetBrains Mono",
-  size: 15pt,
 )
 
-#raw(
-  str(
-    run(
-      _to-le-bytes-u16(50),
-      _to-le-bytes-u16(20),
-      bytes("kljkhlhlhjk"),
+#(
+  eval(
+    str(
+      run(
+        _to-le-bytes-u16(80),
+        _to-le-bytes-u16(60),
+        bytes("kl"),
+      ),
     ),
-  ),
+    scope: (
+      Reset: black,
+    ),
+  )
 )

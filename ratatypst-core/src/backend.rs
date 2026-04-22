@@ -18,12 +18,14 @@ pub struct TypstBackend {
 
 impl fmt::Display for TypstBackend {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str("set par(leading: 0pt);")?;
+
         for cells in self.buffer.content.chunks(self.buffer.area.width as usize) {
             let mut overwritten = vec![];
             let mut skip: usize = 0;
             for (x, c) in cells.iter().enumerate() {
                 if skip == 0 {
-                    f.write_str(c.symbol())?;
+                    write!(f, r#"text(fill: {}, raw("{}"));"#, c.fg, c.symbol())?;
                 } else {
                     overwritten.push((x, c.symbol()));
                 }
@@ -32,8 +34,10 @@ impl fmt::Display for TypstBackend {
             if !overwritten.is_empty() {
                 f.write_str(" Hidden by multi-width symbols: {overwritten:?}")?;
             }
-            f.write_char('\n')?;
+
+            f.write_str("linebreak();")?;
         }
+
         Ok(())
     }
 }
