@@ -199,6 +199,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c6673768db2d862beb9b39a78fdcb1a69439615d5794a1be50caa9bc92c81967"
 
 [[package]]
+name = "panels"
+version = "0.1.0"
+dependencies = [
+ "ratatui",
+ "ratatypst-core",
+ "wasm-minimal-protocol",
+]
+
+[[package]]
 name = "powerfmt"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -278,7 +287,6 @@ version = "0.1.0"
 dependencies = [
  "ratatui",
  "unicode-width",
- "wasm-minimal-protocol",
 ]
 
 [[package]]

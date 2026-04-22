@@ -18,24 +18,24 @@ Inspired by [`soviet-matrix`](https://typst.app/universe/package/soviet-matrix/)
 
 ## Try it out!
 
-1. Clone this repo.
-
-2. Compile the Rust code:
+1. Use `ratatypst-core` in your Rust project:
 
    ```sh
-   just build
+   cargo add --git https://github.com/sermuns/ratatypst
    ```
 
-3. Try out the example, either:
-   - Edit the file with [`typst-preview.nvim`](https://github.com/chomosuke/typst-preview.nvim) which can re-render a preview on every keystroke.
+2. Write a Ratatui app (see examples in `examples/`) that uses `ratatypst_core::TypstBackend` for the backend.
+
+3. Render the PDF, either:
+   - Edit the `.typ` file with [`typst-preview.nvim`](https://github.com/chomosuke/typst-preview.nvim) which can re-render a preview on every keystroke.
 
    - Use [`typst` CLI](https://repology.org/project/typst/versions) (**not as cool**)
 
      ```sh
-     typst watch --root . examples/hello.typ
+     typst watch main.typ
      ```
 
-     which automatically recompiles the PDF `examples/hello.pdf` everytime the `examples/hello.typ` is saved with modifications.
+     which automatically recompiles PDF everytime the `.typ` is saved with modifications.
 
 ## Disclaimer
 
