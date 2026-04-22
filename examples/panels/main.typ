@@ -1,4 +1,4 @@
-#import plugin("panels.wasm"): run
+#import plugin("release/panels.wasm"): run
 
 #let _to-le-bytes-u16(num) = num.to-bytes(
   endian: "little",
