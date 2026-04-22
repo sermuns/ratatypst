@@ -1,8 +1,4 @@
-use core::{
-    cmp::max,
-    fmt::{self, Write},
-    iter,
-};
+use core::{cmp::max, fmt, iter};
 use ratatui::{
     backend::{ClearType, WindowSize},
     buffer::Cell,
