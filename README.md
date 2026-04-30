@@ -26,7 +26,7 @@ Inspired by [`soviet-matrix`](https://typst.app/universe/package/soviet-matrix/)
 
 2. Write a Ratatui app (see examples in `examples/`) that uses `ratatypst_core::TypstBackend` for the backend.
 
-3. Compile the Rust code, see `Justfile` for inspiration. Make to use `wasm32-unknown-unknown` target and `#import` the `.wasm` file as a WASM plugin in your Typst code.
+3. Compile the Rust code, see the [`Justfile`](Justfile) for inspiration. Make to use `wasm32-unknown-unknown` target and `#import` the `.wasm` file as a WASM plugin in your Typst code.
 
 4. Render the PDF, either:
    - Edit the `.typ` file with [`typst-preview.nvim`](https://github.com/chomosuke/typst-preview.nvim) which can re-render a preview on every keystroke.
